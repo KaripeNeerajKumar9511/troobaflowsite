@@ -2,14 +2,14 @@ import ScrollReveal from "@/components/ScrollReveal";
 
 /* ── Shared ── */
 const OpBoxNeutral = ({ label }: { label: string }) => (
-  <div className="px-2.5 py-2 sm:px-5 sm:py-2.5 rounded-md bg-[rgba(30,58,95,0.2)] border border-[rgba(255,255,255,0.1)] text-center min-w-[46px] sm:min-w-[72px]">
-    <span className="font-display text-[13px] sm:text-sm font-medium text-[#E8EDF2]">{label}</span>
+  <div className="px-1.5 py-1.5 sm:px-5 sm:py-2.5 rounded-md bg-[rgba(30,58,95,0.2)] border border-[rgba(255,255,255,0.12)] text-center min-w-[38px] sm:min-w-[72px]">
+    <span className="font-display text-[11px] sm:text-sm font-medium text-[#E8EDF2]">{label}</span>
   </div>
 );
 
 const OpBoxRed = ({ label }: { label: string }) => (
-  <div className="px-2.5 py-2 sm:px-5 sm:py-2.5 rounded-md bg-red-950/30 border-2 border-red-500/60 text-center min-w-[46px] sm:min-w-[72px]">
-    <span className="font-display text-[13px] sm:text-sm font-semibold text-red-400">{label}</span>
+  <div className="px-1.5 py-1.5 sm:px-5 sm:py-2.5 rounded-md bg-red-950/30 border-2 border-red-500/70 text-center min-w-[38px] sm:min-w-[72px]">
+    <span className="font-display text-[11px] sm:text-sm font-semibold text-red-400">{label}</span>
   </div>
 );
 
@@ -20,8 +20,8 @@ const OpBoxAmber = ({ label }: { label: string }) => (
 );
 
 const FixedBox = ({ label }: { label: string }) => (
-  <div className="px-2.5 py-2 sm:px-5 sm:py-2.5 rounded-md bg-[rgba(30,58,95,0.15)] border border-[rgba(255,255,255,0.08)] text-center min-w-[46px] sm:min-w-[72px]">
-    <span className="font-display text-[13px] sm:text-sm text-muted-foreground">{label} </span>
+  <div className="px-1.5 py-1.5 sm:px-5 sm:py-2.5 rounded-md bg-[rgba(30,58,95,0.15)] border border-[rgba(255,255,255,0.1)] text-center min-w-[38px] sm:min-w-[72px]">
+    <span className="font-display text-[11px] sm:text-sm text-muted-foreground">{label} </span>
     <span className="text-[12px] text-green-500/70">✓</span>
   </div>
 );
@@ -54,7 +54,7 @@ const LeftPanel = () => (
     {/* Rows + U-shaped arrow on the right */}
     <div className="flex items-stretch w-full max-w-full justify-center gap-0.5 sm:gap-2 overflow-visible">
       {/* Left: the 3 rows */}
-      <div className="flex flex-col items-center min-w-0">
+      <div className="flex flex-col items-center min-w-0 relative pr-10 md:pr-0">
           {/* Row 1: Op flow with arrows */}
           <div className="flex items-center justify-center">
             <OpBoxNeutral label="Op 1" />
@@ -68,7 +68,7 @@ const LeftPanel = () => (
           <div className="py-2" />
 
           {/* Rows 2-4 use grid for column alignment */}
-          <div className="grid grid-cols-3 gap-x-2 sm:gap-x-3 justify-items-center items-end">
+          <div className="grid grid-cols-3 gap-x-1.5 sm:gap-x-3 justify-items-center items-end">
             {/* Row 2: Round labels + red boxes */}
             <div className="flex flex-col items-center">
               <span className="font-mono text-[9px] sm:text-[10px] text-[#9CA3AF] mb-1">round 1</span>
@@ -111,10 +111,28 @@ const LeftPanel = () => (
             <FixedBox label="Op 2" />
             <FixedBox label="Op 3" />
           </div>
+
+          {/* Mobile U-loop kept inside the left diagram so it never clips */}
+          <div className="md:hidden absolute right-0 top-[10px] bottom-[18px] w-8 pointer-events-none">
+            <div className="absolute left-0 right-0 top-[14px] flex items-center">
+              <div className="w-0 h-0 border-r-[6px] border-r-red-400/75 border-y-[4px] border-y-transparent" />
+              <div className="flex-1 h-0 border-t-[2px] border-dashed border-red-400/70" />
+            </div>
+            <div
+              className="absolute right-0 top-[14px] bottom-[14px]"
+              style={{ width: 0, borderRight: "2px dashed rgba(248,113,113,0.7)" }}
+            />
+            <div className="absolute left-0 right-0 bottom-[14px]">
+              <div className="h-0 border-t-[2px] border-dashed border-red-400/70" />
+            </div>
+            <span className="absolute top-1/2 left-0 -translate-y-1/2 font-mono text-[8px] text-red-400/80 whitespace-nowrap">
+              ↻ repeats
+            </span>
+          </div>
       </div>
 
       {/* Right: U-shaped arrow with "repeats" label */}
-      <div className="relative shrink-0 self-stretch w-[48px] sm:w-14 overflow-visible">
+      <div className="relative shrink-0 self-stretch w-[48px] sm:w-14 overflow-visible hidden md:block">
         {/* Arrowhead at Row 1 */}
         <div className="absolute left-0 right-0 top-[14px] flex items-center">
           <div className="w-0 h-0 border-r-[5px] border-r-red-400/60 border-y-[3px] border-y-transparent" />

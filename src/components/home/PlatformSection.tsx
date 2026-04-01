@@ -154,27 +154,27 @@ const desktopFlowSvg = `<svg width="100%" viewBox="0 0 580 250" xmlns="http://ww
 const mobileFlowSvg = `<svg width="100%" viewBox="0 0 320 250" xmlns="http://www.w3.org/2000/svg">
   <text font-family="DM Mono,monospace" font-size="11" letter-spacing="0.8" fill="#9CA3AF" x="10" y="18">SCENARIO</text>
   <text font-family="DM Mono,monospace" font-size="11" letter-spacing="0.8" fill="#9CA3AF" x="172" y="18">LEAD TIME</text>
-  <text font-family="DM Mono,monospace" font-size="11" letter-spacing="0.8" fill="#9CA3AF" x="262" y="18">QUEUE</text>
+  <text font-family="DM Mono,monospace" font-size="11" letter-spacing="0.8" fill="#9CA3AF" x="252" y="18">QUEUE</text>
   <line x1="6" y1="26" x2="314" y2="26" stroke="#2d3748" stroke-width="0.5"/>
   <rect x="6" y="32" width="308" height="44" rx="4" fill="#1a0808" opacity="0.7"/>
   <text font-family="DM Sans,sans-serif" font-size="13" fill="#9CA3AF" x="12" y="57" dominant-baseline="central">Current state</text>
   <text font-family="DM Sans,sans-serif" font-size="15" font-weight="700" fill="#E24B4A" x="205" y="57" text-anchor="middle" dominant-baseline="central">28 days</text>
-  <text font-family="DM Sans,sans-serif" font-size="15" font-weight="700" fill="#E24B4A" x="282" y="57" text-anchor="middle" dominant-baseline="central">14 jobs</text>
+  <text font-family="DM Sans,sans-serif" font-size="14" font-weight="700" fill="#E24B4A" x="268" y="57" text-anchor="middle" dominant-baseline="central">14 jobs</text>
   <rect x="6" y="82" width="308" height="44" rx="4" fill="#110e00" opacity="0.6"/>
   <text font-family="DM Sans,sans-serif" font-size="13" fill="#9CA3AF" x="12" y="107" dominant-baseline="central">+1 worker</text>
   <text font-family="DM Sans,sans-serif" font-size="15" font-weight="700" fill="#EF9F27" x="205" y="107" text-anchor="middle" dominant-baseline="central">11 days</text>
-  <text font-family="DM Sans,sans-serif" font-size="15" font-weight="700" fill="#EF9F27" x="282" y="107" text-anchor="middle" dominant-baseline="central">3 jobs</text>
+  <text font-family="DM Sans,sans-serif" font-size="14" font-weight="700" fill="#EF9F27" x="268" y="107" text-anchor="middle" dominant-baseline="central">3 jobs</text>
   <rect x="6" y="132" width="308" height="44" rx="4" fill="#020f0a" opacity="0.6"/>
   <text font-family="DM Sans,sans-serif" font-size="13" fill="#9CA3AF" x="12" y="157" dominant-baseline="central">Halve batch size</text>
   <text font-family="DM Sans,sans-serif" font-size="15" font-weight="700" fill="#1D9E75" x="205" y="157" text-anchor="middle" dominant-baseline="central">8 days</text>
-  <text font-family="DM Sans,sans-serif" font-size="15" font-weight="700" fill="#1D9E75" x="282" y="157" text-anchor="middle" dominant-baseline="central">2 jobs</text>
+  <text font-family="DM Sans,sans-serif" font-size="14" font-weight="700" fill="#1D9E75" x="268" y="157" text-anchor="middle" dominant-baseline="central">2 jobs</text>
   <rect x="6" y="182" width="308" height="44" rx="4" fill="#04342C" opacity="0.9"/>
   <rect x="6" y="182" width="308" height="44" rx="4" fill="none" stroke="#1D9E75" stroke-width="1"/>
   <text font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#9FE1CB" x="12" y="207" dominant-baseline="central">Both combined</text>
   <text font-family="DM Sans,sans-serif" font-size="15" font-weight="700" fill="#5DCAA5" x="205" y="207" text-anchor="middle" dominant-baseline="central">6 days</text>
-  <text font-family="DM Sans,sans-serif" font-size="15" font-weight="700" fill="#5DCAA5" x="282" y="207" text-anchor="middle" dominant-baseline="central">1 job</text>
-  <rect x="292" y="192" width="20" height="20" rx="10" fill="#1D9E75"/>
-  <text font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#04342C" x="302" y="204" text-anchor="middle" dominant-baseline="central">★</text>
+  <text font-family="DM Sans,sans-serif" font-size="14" font-weight="700" fill="#5DCAA5" x="268" y="207" text-anchor="middle" dominant-baseline="central">1 job</text>
+  <rect x="296" y="194" width="14" height="14" rx="7" fill="#1D9E75"/>
+  <text font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#04342C" x="303" y="201" text-anchor="middle" dominant-baseline="central">★</text>
 </svg>`;
 
 const FlowDiagram = () => (
