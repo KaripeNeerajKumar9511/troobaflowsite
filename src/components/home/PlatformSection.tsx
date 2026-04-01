@@ -35,6 +35,11 @@ const heatmapData = [
   ]},
 ];
 
+const shortProductLabel = (label: string) => {
+  const parts = label.split(" ");
+  return parts[parts.length - 1] || label;
+};
+
 const cellColors: Record<string, { bg: string; text: string; border: string }> = {
   red:   { bg: "rgba(239,68,68,0.18)", text: "#ef4444", border: "rgba(239,68,68,0.4)" },
   amber: { bg: "rgba(245,158,11,0.14)", text: "#F59E0B", border: "rgba(245,158,11,0.3)" },
@@ -43,13 +48,13 @@ const cellColors: Record<string, { bg: string; text: string; border: string }> =
 
 const BottleneckHeatmap = () => (
   <div className="mt-6">
-    <div className="overflow-x-auto -mx-2 px-2">
-      <table className="w-full text-left" style={{ minWidth: 340, borderCollapse: "separate", borderSpacing: "3px" }}>
+    <div className="overflow-x-auto">
+      <table className="w-full table-fixed text-left" style={{ borderCollapse: "separate", borderSpacing: "2px" }}>
         <thead>
           <tr>
-            <th className="pb-2 pr-2" style={{ width: 80 }} />
+            <th className="pb-2 pr-1 sm:pr-2" style={{ width: 44 }} />
             {operations.map((op) => (
-              <th key={op} className="pb-2 text-center font-mono text-[9px] sm:text-[10px] tracking-[0.14em] uppercase" style={{ color: "rgb(148,163,180)" }}>
+              <th key={op} className="pb-2 text-center font-mono text-[8px] sm:text-[10px] tracking-[0.12em] sm:tracking-[0.14em] uppercase" style={{ color: "rgb(148,163,180)" }}>
                 {op}
               </th>
             ))}
@@ -58,22 +63,23 @@ const BottleneckHeatmap = () => (
         <tbody>
           {heatmapData.map((row) => (
             <tr key={row.product}>
-              <td className="pr-2 py-0.5 font-mono text-[10px] sm:text-[11px] tracking-[0.08em]" style={{ color: "rgba(232,237,242,0.75)" }}>
-                {row.product}
+              <td className="pr-1 sm:pr-2 py-0.5 font-mono text-[9px] sm:text-[11px] tracking-[0.06em] sm:tracking-[0.08em] whitespace-nowrap" style={{ color: "rgba(232,237,242,0.75)" }}>
+                <span className="sm:hidden">{shortProductLabel(row.product)}</span>
+                <span className="hidden sm:inline">{row.product}</span>
               </td>
               {row.cells.map((cell, i) => {
                 const c = cellColors[cell.level];
                 return (
                   <td key={i} className="py-0.5">
                     <div
-                      className="rounded text-center py-2 px-1"
+                      className="rounded text-center py-2 px-0.5 sm:px-1 min-h-[50px] sm:min-h-[56px] flex flex-col items-center justify-center"
                       style={{ background: c.bg, border: `1px solid ${c.border}` }}
                     >
-                      <span className="font-mono text-[10px] sm:text-xs font-semibold" style={{ color: c.text }}>
+                      <span className="font-mono text-[9px] sm:text-xs font-semibold" style={{ color: c.text }}>
                         {cell.label}
                       </span>
                       {cell.tag && (
-                        <span className="block font-mono text-[7px] sm:text-[8px] tracking-[0.15em] mt-0.5" style={{ color: c.text }}>
+                        <span className="block font-mono text-[6px] sm:text-[8px] tracking-[0.12em] sm:tracking-[0.15em] mt-0.5 leading-none" style={{ color: c.text }}>
                           {cell.tag}
                         </span>
                       )}
@@ -87,7 +93,7 @@ const BottleneckHeatmap = () => (
       </table>
     </div>
 
-    <div className="flex items-center gap-5 mt-4">
+    <div className="flex items-center gap-3 sm:gap-5 mt-4 flex-wrap">
       {[
         { label: "Bottleneck", color: cellColors.red },
         { label: "Watch", color: cellColors.amber },
@@ -95,7 +101,7 @@ const BottleneckHeatmap = () => (
       ].map((l) => (
         <div key={l.label} className="flex items-center gap-1.5">
           <span className="block w-2.5 h-2.5 rounded-sm" style={{ background: l.color.bg, border: `1px solid ${l.color.border}` }} />
-          <span className="font-mono text-[10px] tracking-[0.1em]" style={{ color: l.color.text }}>{l.label}</span>
+          <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.08em] sm:tracking-[0.1em]" style={{ color: l.color.text }}>{l.label}</span>
         </div>
       ))}
     </div>
@@ -103,7 +109,7 @@ const BottleneckHeatmap = () => (
     <p className="font-mono text-[11px] tracking-[0.08em] mt-3" style={{ color: "rgba(232,237,242,0.65)" }}>
       Instantly identify constraints across products and operations.
     </p>
-    <p className="md:hidden font-mono text-[10px] tracking-wide text-center mt-2" style={{ color: "rgba(232,237,242,0.4)" }}>
+    <p className="md:hidden font-mono text-[9px] tracking-wide text-center mt-2" style={{ color: "rgba(232,237,242,0.4)" }}>
       ← scroll to see full grid →
     </p>
   </div>
