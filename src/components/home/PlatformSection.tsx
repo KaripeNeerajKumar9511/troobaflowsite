@@ -49,12 +49,12 @@ const cellColors: Record<string, { bg: string; text: string; border: string }> =
 const BottleneckHeatmap = () => (
   <div className="mt-6">
     <div className="overflow-x-auto">
-      <table className="w-full table-fixed text-left" style={{ borderCollapse: "separate", borderSpacing: "2px" }}>
+      <table className="w-full table-fixed sm:table-auto text-left border-separate [border-spacing:2px] sm:[border-spacing:4px] lg:[border-spacing:6px]">
         <thead>
           <tr>
-            <th className="pb-2 pr-1 sm:pr-2" style={{ width: 44 }} />
+            <th className="pb-2 sm:pb-3 pr-1 sm:pr-3 w-[44px] sm:w-[92px]" />
             {operations.map((op) => (
-              <th key={op} className="pb-2 text-center font-mono text-[8px] sm:text-[10px] tracking-[0.12em] sm:tracking-[0.14em] uppercase" style={{ color: "rgb(148,163,180)" }}>
+              <th key={op} className="pb-2 sm:pb-3 text-center font-mono text-[8px] sm:text-[11px] tracking-[0.12em] sm:tracking-[0.14em] uppercase" style={{ color: "rgb(148,163,180)" }}>
                 {op}
               </th>
             ))}
@@ -63,23 +63,23 @@ const BottleneckHeatmap = () => (
         <tbody>
           {heatmapData.map((row) => (
             <tr key={row.product}>
-              <td className="pr-1 sm:pr-2 py-0.5 font-mono text-[9px] sm:text-[11px] tracking-[0.06em] sm:tracking-[0.08em] whitespace-nowrap" style={{ color: "rgba(232,237,242,0.75)" }}>
+              <td className="pr-1 sm:pr-3 py-0.5 sm:py-1 font-mono text-[9px] sm:text-[11px] tracking-[0.06em] sm:tracking-[0.08em] whitespace-nowrap" style={{ color: "rgba(232,237,242,0.75)" }}>
                 <span className="sm:hidden">{shortProductLabel(row.product)}</span>
                 <span className="hidden sm:inline">{row.product}</span>
               </td>
               {row.cells.map((cell, i) => {
                 const c = cellColors[cell.level];
                 return (
-                  <td key={i} className="py-0.5">
+                  <td key={i} className="py-0.5 sm:py-1">
                     <div
-                      className="rounded text-center py-2 px-0.5 sm:px-1 min-h-[50px] sm:min-h-[56px] flex flex-col items-center justify-center"
+                      className="rounded-md text-center py-2 px-0.5 sm:px-2 lg:px-3 min-h-[50px] sm:min-h-[64px] lg:min-h-[68px] flex flex-col items-center justify-center"
                       style={{ background: c.bg, border: `1px solid ${c.border}` }}
                     >
-                      <span className="font-mono text-[9px] sm:text-xs font-semibold" style={{ color: c.text }}>
+                      <span className="font-mono text-[9px] sm:text-sm font-semibold" style={{ color: c.text }}>
                         {cell.label}
                       </span>
                       {cell.tag && (
-                        <span className="block font-mono text-[6px] sm:text-[8px] tracking-[0.12em] sm:tracking-[0.15em] mt-0.5 leading-none" style={{ color: c.text }}>
+                        <span className="block font-mono text-[6px] sm:text-[9px] tracking-[0.12em] sm:tracking-[0.15em] mt-0.5 leading-none" style={{ color: c.text }}>
                           {cell.tag}
                         </span>
                       )}

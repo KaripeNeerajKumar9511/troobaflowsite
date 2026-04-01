@@ -114,7 +114,7 @@ const LeftPanel = () => (
       </div>
 
       {/* Right: U-shaped arrow with "repeats" label */}
-      <div className="relative shrink-0 self-stretch w-[56px] sm:w-14 overflow-visible">
+      <div className="relative shrink-0 self-stretch w-[48px] sm:w-14 overflow-visible">
         {/* Arrowhead at Row 1 */}
         <div className="absolute left-0 right-0 top-[14px] flex items-center">
           <div className="w-0 h-0 border-r-[5px] border-r-red-400/60 border-y-[3px] border-y-transparent" />
@@ -129,7 +129,7 @@ const LeftPanel = () => (
         <div className="absolute left-0 right-0 bottom-[14px]">
           <div className="h-0 border-t-[1.5px] border-dashed border-red-400/50" />
         </div>
-        <span className="absolute top-1/2 left-1 -translate-y-1/2 font-mono text-[7px] sm:text-[9px] text-red-400/60 whitespace-nowrap">
+        <span className="absolute top-1/2 left-0.5 sm:left-1 -translate-y-1/2 font-mono text-[8px] sm:text-[9px] text-red-400/60 whitespace-nowrap">
           ↻ repeats
         </span>
       </div>
