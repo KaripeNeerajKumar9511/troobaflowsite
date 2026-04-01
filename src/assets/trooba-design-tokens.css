@@ -1,0 +1,207 @@
+/* ============================================================
+   TROOBA FLOW INTELLIGENCE — Design Tokens for Lovable
+   Brand System v1.0 · 2026
+   
+   USAGE: Paste this into your Lovable project's global CSS
+   or reference via your tailwind.config / theme provider.
+   ============================================================ */
+
+:root {
+
+  /* ── BRAND COLOURS ──────────────────────────────────── */
+
+  /* Primary */
+  --color-teal:            #00C4B4;   /* Primary accent. CTAs, links, teal strand */
+  --color-teal-light:      #009A8E;   /* Teal on light/white backgrounds only */
+  --color-navy:            #0C0F14;   /* Primary background. Default dark surface */
+  --color-slate:           #1E3A5F;   /* Secondary surfaces, dividers, cards */
+  --color-off-white:       #E8EDF2;   /* Primary text on dark. Off-white strand */
+
+  /* Neutrals */
+  --color-mid:             #4A5868;   /* Muted text, labels, captions */
+  --color-border-dark:     rgba(255,255,255,0.08);
+  --color-border-light:    #D4DAE0;
+  --color-paper:           #EEF2F5;   /* Light background (secondary) */
+  --color-white:           #FFFFFF;
+
+  /* Product Line Accents (not for master brand use) */
+  --color-flow:            #00C4B4;   /* Trooba Flow */
+  --color-plan:            #F59E0B;   /* Trooba Plan */
+  --color-ai:              #7C6FFF;   /* Trooba AI */
+  --color-twin:            #22C55E;   /* Trooba Twin */
+
+  /* ── TYPOGRAPHY ─────────────────────────────────────── */
+
+  /* Font Families */
+  --font-display:          'DM Sans', 'Aktiv Grotesk', 'Neue Haas Grotesk', sans-serif;
+  --font-mono:             'DM Mono', 'Roboto Mono', monospace;
+
+  /* Font Weights */
+  --font-weight-bold:      700;
+  --font-weight-semibold:  600;
+  --font-weight-medium:    500;
+  --font-weight-regular:   400;
+
+  /* Type Scale */
+  --text-display:          72px;
+  --text-display-leading:  1.05;
+
+  --text-h1:               48px;
+  --text-h1-leading:       1.1;
+
+  --text-h2:               32px;
+  --text-h2-leading:       1.15;
+
+  --text-h3:               24px;
+  --text-h3-leading:       1.2;
+
+  --text-h4:               20px;
+  --text-h4-leading:       1.25;
+
+  --text-body-lg:          16px;
+  --text-body:             14px;
+  --text-body-sm:          13px;
+  --text-body-leading:     1.6;
+
+  --text-label:            12px;
+  --text-label-tracking:   0.08em;
+
+  --text-mono:             12px;
+  --text-mono-sm:          10px;
+  --text-mono-tracking:    0.2em;   /* Minimum — use 0.28em for sub-brand line */
+
+  /* Letter Spacing */
+  --tracking-tight:        -0.01em;  /* Wordmark */
+  --tracking-normal:       0em;
+  --tracking-wide:         0.08em;   /* Labels */
+  --tracking-wider:        0.2em;    /* Mono labels */
+  --tracking-widest:       0.28em;   /* Sub-brand line (FLOW INTELLIGENCE) */
+
+  /* ── SPACING ─────────────────────────────────────────── */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-16:  64px;
+  --space-20:  80px;
+  --space-24:  96px;
+
+  /* ── BORDER RADIUS ───────────────────────────────────── */
+  --radius-sm:    4px;
+  --radius-md:    6px;
+  --radius-lg:    12px;
+  --radius-xl:    16px;
+  --radius-2xl:   24px;
+  --radius-full:  9999px;
+
+  /* ── SHADOWS ─────────────────────────────────────────── */
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md:   0 4px 12px rgba(0,0,0,0.4);
+  --shadow-lg:   0 8px 32px rgba(0,0,0,0.5);
+  --shadow-teal: 0 0 24px rgba(0,196,180,0.18);  /* Teal glow for key CTAs */
+
+  /* ── COMPONENT TOKENS ────────────────────────────────── */
+
+  /* Surfaces */
+  --surface-base:      var(--color-navy);
+  --surface-elevated:  var(--color-slate);
+  --surface-overlay:   rgba(30,58,95,0.8);
+
+  /* Text */
+  --text-primary:      var(--color-off-white);
+  --text-secondary:    var(--color-mid);
+  --text-accent:       var(--color-teal);
+  --text-inverse:      var(--color-navy);
+
+  /* Borders */
+  --border-subtle:     var(--color-border-dark);
+  --border-default:    rgba(255,255,255,0.12);
+  --border-strong:     rgba(255,255,255,0.2);
+
+  /* Interactive */
+  --interactive-primary:       var(--color-teal);
+  --interactive-primary-hover: #00AFA1;
+  --interactive-primary-text:  var(--color-navy);
+
+  /* Focus */
+  --focus-ring:  0 0 0 2px var(--color-navy), 0 0 0 4px var(--color-teal);
+
+  /* Logo clearspace (= cap-height of wordmark) */
+  --logo-clearspace: 14px;   /* ~cap-height at standard sizes */
+}
+
+/* ── LIGHT MODE OVERRIDES ── */
+[data-theme="light"] {
+  --surface-base:    var(--color-paper);
+  --surface-elevated: var(--color-white);
+  --text-primary:    var(--color-navy);
+  --text-secondary:  var(--color-mid);
+  --text-accent:     var(--color-teal-light);
+  --border-subtle:   var(--color-border-light);
+  --border-default:  #C8CDD4;
+}
+
+/* ── UTILITY CLASSES ── */
+.font-display  { font-family: var(--font-display); }
+.font-mono     { font-family: var(--font-mono); }
+
+.text-teal     { color: var(--color-teal); }
+.text-navy     { color: var(--color-navy); }
+.text-offwhite { color: var(--color-off-white); }
+.text-mid      { color: var(--color-mid); }
+
+.bg-navy       { background-color: var(--color-navy); }
+.bg-slate      { background-color: var(--color-slate); }
+.bg-teal       { background-color: var(--color-teal); }
+
+.mono-label {
+  font-family:     var(--font-mono);
+  font-size:       var(--text-mono-sm);
+  letter-spacing:  var(--tracking-wider);
+  text-transform:  uppercase;
+  color:           var(--color-teal);
+}
+
+.subbrand-line {
+  font-family:    var(--font-mono);
+  font-size:      9px;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color:          var(--color-teal);
+}
+
+.wordmark {
+  font-family:    var(--font-display);
+  font-weight:    var(--font-weight-bold);
+  letter-spacing: var(--tracking-tight);
+}
+
+/* ============================================================
+   Tailwind Config Reference (tailwind.config.js):
+   
+   theme: {
+     extend: {
+       colors: {
+         'trooba-teal':      '#00C4B4',
+         'trooba-teal-lt':   '#009A8E',
+         'trooba-navy':      '#0C0F14',
+         'trooba-slate':     '#1E3A5F',
+         'trooba-offwhite':  '#E8EDF2',
+         'trooba-mid':       '#4A5868',
+         'product-flow':     '#00C4B4',
+         'product-plan':     '#F59E0B',
+         'product-ai':       '#7C6FFF',
+         'product-twin':     '#22C55E',
+       },
+       fontFamily: {
+         display: ['DM Sans', 'sans-serif'],
+         mono:    ['DM Mono', 'monospace'],
+       }
+     }
+   }
+   ============================================================ */
