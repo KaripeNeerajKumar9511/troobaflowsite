@@ -10,7 +10,15 @@ const RequestAccessPage = () => {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState({
-    name: "", company: "", role: "", mfgType: "", skuCount: "", challenge: "",
+    name: "",
+    company: "",
+    companyLocation: "",
+    email: "",
+    phone: "",
+    role: "",
+    mfgType: "",
+    skuCount: "",
+    challenge: "",
   });
 
   const handleSubmit = async (e: FormEvent) => {
@@ -111,6 +119,39 @@ const RequestAccessPage = () => {
                   required
                   value={form.company}
                   onChange={(e) => setForm({ ...form, company: e.target.value })}
+                  className="w-full bg-transparent border border-trooba-offwhite/[0.12] rounded-md px-4 py-3 text-trooba-offwhite placeholder:text-trooba-mid/50 focus:outline-none focus:border-trooba-teal transition-colors"
+                />
+              </div>
+              <div>
+                <label className="block font-mono text-[10px] tracking-[0.18em] uppercase text-trooba-mid mb-2">Company location</label>
+                <input
+                  required
+                  autoComplete="address-level2"
+                  placeholder="City, region, or country"
+                  value={form.companyLocation}
+                  onChange={(e) => setForm({ ...form, companyLocation: e.target.value })}
+                  className="w-full bg-transparent border border-trooba-offwhite/[0.12] rounded-md px-4 py-3 text-trooba-offwhite placeholder:text-trooba-mid/50 focus:outline-none focus:border-trooba-teal transition-colors"
+                />
+              </div>
+              <div>
+                <label className="block font-mono text-[10px] tracking-[0.18em] uppercase text-trooba-mid mb-2">Contact email</label>
+                <input
+                  type="email"
+                  required
+                  autoComplete="email"
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  className="w-full bg-transparent border border-trooba-offwhite/[0.12] rounded-md px-4 py-3 text-trooba-offwhite placeholder:text-trooba-mid/50 focus:outline-none focus:border-trooba-teal transition-colors"
+                />
+              </div>
+              <div>
+                <label className="block font-mono text-[10px] tracking-[0.18em] uppercase text-trooba-mid mb-2">Contact phone</label>
+                <input
+                  type="tel"
+                  required
+                  autoComplete="tel"
+                  value={form.phone}
+                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
                   className="w-full bg-transparent border border-trooba-offwhite/[0.12] rounded-md px-4 py-3 text-trooba-offwhite placeholder:text-trooba-mid/50 focus:outline-none focus:border-trooba-teal transition-colors"
                 />
               </div>

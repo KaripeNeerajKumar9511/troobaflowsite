@@ -76,11 +76,25 @@ function getTransporter(config) {
 }
 
 const formValidator = (body) => {
-  const required = ["name", "company", "role", "mfgType", "skuCount", "challenge"];
+  const required = [
+    "name",
+    "company",
+    "companyLocation",
+    "email",
+    "phone",
+    "role",
+    "mfgType",
+    "skuCount",
+    "challenge",
+  ];
   for (const key of required) {
     if (!String(body?.[key] || "").trim()) {
       return `${key} is required`;
     }
+  }
+  const email = String(body.email).trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return "email must be valid";
   }
   return null;
 };
@@ -93,16 +107,20 @@ app.post("/api/request-access", async (req, res) => {
     }
 
     const { host, smtpPort, useTls, user, pass, adminEmail } = loadConfig();
-    const { name, company, role, mfgType, skuCount, challenge } = req.body;
+    const { name, company, companyLocation, email, phone, role, mfgType, skuCount, challenge } =
+      req.body;
     const smtp = getTransporter({ host, smtpPort, useTls, user, pass });
 
     const safe = {
       name: escapeHtml(name),
       company: escapeHtml(company),
+      companyLocation: escapeHtml(companyLocation),
+      email: escapeHtml(email),
+      phone: escapeHtml(phone),
       role: escapeHtml(role),
       mfgType: escapeHtml(mfgType),
       skuCount: escapeHtml(skuCount),
-      challenge: escapeHtml(challenge).replace(/\r\n|\n|\r/g, "<br/>")
+      challenge: escapeHtml(challenge).replace(/\r\n|\n|\r/g, "<br/>"),
     };
 
     const subject = `New Access Request from ${String(name).replace(/[\r\n]+/g, " ")} (${String(company).replace(/[\r\n]+/g, " ")})`;
@@ -112,9 +130,12 @@ app.post("/api/request-access", async (req, res) => {
       <table style="border-collapse: collapse; width: 100%; max-width: 600px; font-family: Arial, sans-serif;">
         <tr style="border-bottom: 1px solid #e5e7eb;"><td style="padding: 12px; font-weight: bold; color: #374151; width: 200px;">Name</td><td style="padding: 12px; color: #1f2937;">${safe.name}</td></tr>
         <tr style="border-bottom: 1px solid #e5e7eb; background-color: #f9fafb;"><td style="padding: 12px; font-weight: bold; color: #374151;">Company</td><td style="padding: 12px; color: #1f2937;">${safe.company}</td></tr>
-        <tr style="border-bottom: 1px solid #e5e7eb;"><td style="padding: 12px; font-weight: bold; color: #374151;">Role</td><td style="padding: 12px; color: #1f2937;">${safe.role}</td></tr>
-        <tr style="border-bottom: 1px solid #e5e7eb; background-color: #f9fafb;"><td style="padding: 12px; font-weight: bold; color: #374151;">Manufacturing Type</td><td style="padding: 12px; color: #1f2937;">${safe.mfgType}</td></tr>
-        <tr style="border-bottom: 1px solid #e5e7eb;"><td style="padding: 12px; font-weight: bold; color: #374151;">Active SKUs</td><td style="padding: 12px; color: #1f2937;">${safe.skuCount}</td></tr>
+        <tr style="border-bottom: 1px solid #e5e7eb;"><td style="padding: 12px; font-weight: bold; color: #374151;">Company location</td><td style="padding: 12px; color: #1f2937;">${safe.companyLocation}</td></tr>
+        <tr style="border-bottom: 1px solid #e5e7eb; background-color: #f9fafb;"><td style="padding: 12px; font-weight: bold; color: #374151;">Contact email</td><td style="padding: 12px; color: #1f2937;"><a href="mailto:${safe.email}">${safe.email}</a></td></tr>
+        <tr style="border-bottom: 1px solid #e5e7eb;"><td style="padding: 12px; font-weight: bold; color: #374151;">Contact phone</td><td style="padding: 12px; color: #1f2937;">${safe.phone}</td></tr>
+        <tr style="border-bottom: 1px solid #e5e7eb; background-color: #f9fafb;"><td style="padding: 12px; font-weight: bold; color: #374151;">Role</td><td style="padding: 12px; color: #1f2937;">${safe.role}</td></tr>
+        <tr style="border-bottom: 1px solid #e5e7eb;"><td style="padding: 12px; font-weight: bold; color: #374151;">Manufacturing Type</td><td style="padding: 12px; color: #1f2937;">${safe.mfgType}</td></tr>
+        <tr style="border-bottom: 1px solid #e5e7eb; background-color: #f9fafb;"><td style="padding: 12px; font-weight: bold; color: #374151;">Active SKUs</td><td style="padding: 12px; color: #1f2937;">${safe.skuCount}</td></tr>
         <tr style="background-color: #f9fafb;"><td style="padding: 12px; font-weight: bold; color: #374151; vertical-align: top;">Biggest Challenge</td><td style="padding: 12px; color: #1f2937;">${safe.challenge}</td></tr>
       </table>
     `;
