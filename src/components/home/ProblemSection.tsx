@@ -1,3 +1,4 @@
+import * as React from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 
 /* ── Shared ── */
@@ -79,7 +80,35 @@ const repeatsLoopPathD = (startY: number) =>
 
 const REPEAT_LOOP_OVERLAY_PHONE_Y = 155;
 /** md–lg: slightly lower start than phone so the hook aligns with the ✓ row on tablet. */
-const REPEAT_LOOP_OVERLAY_TABLET_Y = 184;
+const REPEAT_LOOP_OVERLAY_TABLET_Y = 155;
+/** Landscape rotation version: use a stable Y so the loop doesn't jump on rotate. */
+const REPEAT_LOOP_OVERLAY_ROTATION_Y = 184;
+
+function useMediaQuery(query: string) {
+  const getMatches = React.useCallback(
+    () => (typeof window !== "undefined" ? window.matchMedia(query).matches : false),
+    [query],
+  );
+
+  const [matches, setMatches] = React.useState<boolean>(getMatches);
+
+  React.useEffect(() => {
+    const mql = window.matchMedia(query);
+    const onChange = () => setMatches(mql.matches);
+    onChange();
+
+    // Safari fallback
+    if (mql.addEventListener) mql.addEventListener("change", onChange);
+    else mql.addListener(onChange);
+
+    return () => {
+      if (mql.removeEventListener) mql.removeEventListener("change", onChange);
+      else mql.removeListener(onChange);
+    };
+  }, [query]);
+
+  return matches;
+}
 
 const repeatsLoopStrokeProps = {
   stroke: "currentColor" as const,
@@ -97,29 +126,37 @@ const RepeatsLoopLabel = () => (
 );
 
 /** Overlay rail: phone + tablet (< lg). Same box as mobile so SVG scales like mobile (aside column stretches differently and breaks alignment). */
-const RepeatsLoopRailOverlay = () => (
-  <div
-    className="pointer-events-none lg:hidden absolute right-0 top-[10px] bottom-[18px] w-10 sm:w-11"
-    aria-hidden
-  >
-    <svg
-      className="absolute inset-0 h-full w-full overflow-visible text-red-400/85"
-      viewBox="0 0 44 128"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      preserveAspectRatio="xMaxYMid meet"
+const RepeatsLoopRailOverlay = () => {
+  const isLandscape = useMediaQuery("(orientation: landscape)");
+  const isMdUp = useMediaQuery("(min-width: 768px)");
+
+  // Portrait: keep tuned phone/tablet values.
+  // Landscape: force the rotation/stable geometry to prevent jumping when the layout crosses `md`.
+  const overlayStartY = isLandscape
+    ? REPEAT_LOOP_OVERLAY_ROTATION_Y
+    : isMdUp
+      ? REPEAT_LOOP_OVERLAY_TABLET_Y
+      : REPEAT_LOOP_OVERLAY_PHONE_Y;
+
+  return (
+    <div
+      className="pointer-events-none lg:hidden absolute right-0 top-[10px] bottom-[18px] w-10 sm:w-11"
+      aria-hidden
     >
-      <path className="md:hidden" d={repeatsLoopPathD(REPEAT_LOOP_OVERLAY_PHONE_Y)} {...repeatsLoopStrokeProps} />
-      <path
-        className="hidden md:block"
-        d={repeatsLoopPathD(REPEAT_LOOP_OVERLAY_TABLET_Y)}
-        {...repeatsLoopStrokeProps}
-      />
-      <path d="M 2 67 L 10 62 L 10 72 Z" fill="currentColor" opacity={0.88} />
-    </svg>
-    <RepeatsLoopLabel />
-  </div>
-);
+      <svg
+        className="absolute inset-0 h-full w-full overflow-visible text-red-400/85"
+        viewBox="0 0 44 128"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMaxYMid meet"
+      >
+        <path d={repeatsLoopPathD(overlayStartY)} {...repeatsLoopStrokeProps} />
+        <path d="M 2 67 L 10 62 L 10 72 Z" fill="currentColor" opacity={0.88} />
+      </svg>
+      <RepeatsLoopLabel />
+    </div>
+  );
+};
 
 /** Side column rail (lg+ only). Desktop path; not used on tablet so layout matches tuned overlay. */
 const RepeatsLoopRailAside = () => (
