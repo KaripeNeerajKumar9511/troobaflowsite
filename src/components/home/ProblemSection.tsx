@@ -112,20 +112,32 @@ const LeftPanel = () => (
             <FixedBox label="Op 3" />
           </div>
 
-          {/* Mobile U-loop kept inside the left diagram so it never clips */}
-          <div className="md:hidden absolute right-0 top-[10px] bottom-[18px] w-8 pointer-events-none">
-            <div className="absolute left-0 right-0 top-[14px] flex items-center">
-              <div className="w-0 h-0 border-r-[6px] border-r-red-400/75 border-y-[4px] border-y-transparent" />
-              <div className="flex-1 h-0 border-t-[2px] border-dashed border-red-400/70" />
-            </div>
-            <div
-              className="absolute right-0 top-[14px] bottom-[14px]"
-              style={{ width: 0, borderRight: "2px dashed rgba(248,113,113,0.7)" }}
-            />
-            <div className="absolute left-0 right-0 bottom-[14px]">
-              <div className="h-0 border-t-[2px] border-dashed border-red-400/70" />
-            </div>
-            <span className="absolute top-1/2 left-0 -translate-y-1/2 font-mono text-[8px] text-red-400/80 whitespace-nowrap">
+          {/* Mobile U-loop: SVG for rounded corners + glass label so text doesn’t mix with dashes */}
+          <div className="md:hidden absolute right-0 top-[10px] bottom-[18px] w-10 pointer-events-none">
+            <svg
+              className="absolute inset-0 h-full w-full text-red-400/85"
+              viewBox="0 0 40 128"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="xMaxYMid meet"
+              aria-hidden
+            >
+              <path
+                d="M 6 16 H 26 Q 32 16 32 22 V 106 Q 32 112 26 112 H 8"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeDasharray="5 4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                opacity="0.9"
+              />
+              <path
+                d="M 2 16 L 7 12.5 L 7 19.5 Z"
+                fill="currentColor"
+                opacity="0.85"
+              />
+            </svg>
+            <span className="absolute top-1/2 left-0 z-10 -translate-y-1/2 whitespace-nowrap rounded-md border border-red-400/30 bg-[rgba(15,23,42,0.65)] px-1.5 py-0.5 font-mono text-[8px] text-red-300 shadow-sm backdrop-blur-md">
               ↻ repeats
             </span>
           </div>
