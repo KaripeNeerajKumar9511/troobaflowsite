@@ -140,7 +140,7 @@ const RepeatsLoopRailOverlay = () => {
 
   return (
     <div
-      className="pointer-events-none lg:hidden absolute right-0 top-[10px] bottom-[18px] w-10 sm:w-11"
+      className="pointer-events-none lg:hidden absolute right-0 inset-y-0 w-10 sm:w-11"
       aria-hidden
     >
       <svg
