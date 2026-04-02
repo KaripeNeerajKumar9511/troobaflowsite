@@ -33,10 +33,31 @@ const GrayArrowRight = () => (
   </div>
 );
 
+/** Matches top row: Op — Op — Op with gray arrows in between (5 columns) */
+const diagramTopGridClass =
+  "grid w-full justify-items-center items-center gap-x-1.5 sm:gap-x-3 [grid-template-columns:auto_auto_auto_auto_auto]";
+
 const RedArrowDown = () => (
   <div className="flex flex-col items-center gap-0.5 py-0.5">
     <div className="h-3 sm:h-4 border-l-[1.5px] border-red-500/50" />
     <span className="font-mono text-[11px] sm:text-xs text-red-400/80">fix</span>
+  </div>
+);
+
+/** Vertical flow: shaft → “fix” → arrowhead (middle row → bottom row), centered on column */
+const RedFixArrowDown = () => (
+  <div className="flex flex-col items-center gap-0.5 py-2">
+    <div className="h-3 sm:h-4 w-px shrink-0 bg-red-500/55" />
+    <span className="font-mono text-[10px] sm:text-[11px] text-red-400/85 leading-none">fix</span>
+    <div className="w-0 h-0 border-t-[5px] border-t-red-500/55 border-x-[4px] border-x-transparent shrink-0" />
+  </div>
+);
+
+/** Top neutral row → middle “round” row */
+const SubtleArrowDown = () => (
+  <div className="flex flex-col items-center py-1 sm:py-1.5">
+    <div className="h-2 sm:h-3 w-px shrink-0 bg-[rgba(255,255,255,0.22)]" />
+    <div className="w-0 h-0 border-t-[4px] border-t-[rgba(255,255,255,0.28)] border-x-[3px] border-x-transparent shrink-0" />
   </div>
 );
 
@@ -48,6 +69,47 @@ const AmberChip = () => (
   <div className="h-[12px] w-[12px] sm:h-[14px] sm:w-[14px] rounded-[2px] bg-amber-400/50 border border-amber-500/40" />
 );
 
+/**
+ * Dashed U-loop on the right: leaves fixed Op 3 (bottom), runs up the rail, returns into red Op 3 (middle).
+ * Rounded joins + glass “repeats” pill (matches reference layout).
+ */
+/** Same rail shape; start Y tuned per breakpoint so the bottom leg meets Op3✓. */
+const repeatsLoopPathD =
+  (startY: number) => `M 6 ${startY} H 34 V 80 Q 34 67 24 67 H 10`;
+
+const RepeatsLoopRail = ({ variant }: { variant: "mobile" | "desktop" }) => (
+  <div
+    className={
+      variant === "mobile"
+        ? "pointer-events-none md:hidden absolute right-0 top-[10px] bottom-[18px] w-10"
+        : "pointer-events-none relative hidden md:block shrink-0 self-stretch w-12 sm:w-16 overflow-visible"
+    }
+    aria-hidden
+  >
+    <svg
+      className="absolute inset-0 h-full w-full overflow-visible text-red-400/85"
+      viewBox="0 0 44 128"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMaxYMid meet"
+    >
+      <path
+        d={repeatsLoopPathD(variant === "mobile" ? 155 : 130)}
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeDasharray="5 4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity="0.92"
+      />
+      <path d="M 2 67 L 10 62 L 10 72 Z" fill="currentColor" opacity="0.88" />
+    </svg>
+    <span className="absolute top-[70%] left-0 z-10 -translate-y-1/2 whitespace-nowrap rounded-full border border-red-400/35 bg-[rgba(15,23,42,0.58)] px-1.5 py-0.5 sm:px-2 font-mono text-[8px] sm:text-[9px] text-red-200/95 shadow-sm backdrop-blur-md">
+      ↻ repeats
+    </span>
+  </div>
+);
+
 /* ── Left panel ── */
 const LeftPanel = () => (
   <div className="flex flex-col items-center py-6 sm:py-8 px-2 sm:px-6">
@@ -55,114 +117,66 @@ const LeftPanel = () => (
     <div className="flex items-stretch w-full max-w-full justify-center gap-0.5 sm:gap-2 overflow-visible">
       {/* Left: the 3 rows */}
       <div className="flex flex-col items-center min-w-0 relative pr-10 md:pr-0">
-          {/* Row 1: Op flow with arrows */}
-          <div className="flex items-center justify-center">
-            <OpBoxNeutral label="Op 1" />
-            <GrayArrowRight />
-            <OpBoxNeutral label="Op 2" />
-            <GrayArrowRight />
-            <OpBoxNeutral label="Op 3" />
+          {/* Same width for top row + grid so each column stacks Op → round → fix → done */}
+          <div className="inline-flex flex-col items-stretch mx-auto w-max max-w-full">
+            {/* Row 1: Op —→ Op —→ Op (5 columns so lower rows align under each Op) */}
+            <div className={diagramTopGridClass}>
+              <OpBoxNeutral label="Op 1" />
+              <GrayArrowRight />
+              <OpBoxNeutral label="Op 2" />
+              <GrayArrowRight />
+              <OpBoxNeutral label="Op 3" />
+            </div>
+
+            {/* Top → middle */}
+            <div className={diagramTopGridClass}>
+              <SubtleArrowDown />
+              <div aria-hidden className="min-w-0" />
+              <SubtleArrowDown />
+              <div aria-hidden className="min-w-0" />
+              <SubtleArrowDown />
+            </div>
+
+            <div className={`${diagramTopGridClass} items-end`}>
+              <div className="flex flex-col items-center">
+                <span className="font-mono text-[9px] sm:text-[10px] text-[#9CA3AF] mb-1">round 1</span>
+                <OpBoxRed label="Op 1" />
+              </div>
+              <div aria-hidden className="min-w-0" />
+              <div className="flex flex-col items-center">
+                <span className="font-mono text-[9px] sm:text-[10px] text-[#9CA3AF] mb-1">round 2</span>
+                <OpBoxRed label="Op 2" />
+              </div>
+              <div aria-hidden className="min-w-0" />
+              <div className="flex flex-col items-center">
+                <span className="font-mono text-[9px] sm:text-[10px] text-[#9CA3AF] mb-1">round 3</span>
+                <OpBoxRed label="Op 3" />
+              </div>
+            </div>
+
+            {/* Middle → bottom */}
+            <div className={diagramTopGridClass}>
+              <RedFixArrowDown />
+              <div aria-hidden className="min-w-0" />
+              <RedFixArrowDown />
+              <div aria-hidden className="min-w-0" />
+              <RedFixArrowDown />
+            </div>
+
+            <div className={diagramTopGridClass}>
+              <FixedBox label="Op 1" />
+              <div aria-hidden className="min-w-0" />
+              <FixedBox label="Op 2" />
+              <div aria-hidden className="min-w-0" />
+              <FixedBox label="Op 3" />
+            </div>
           </div>
 
-          {/* Spacing */}
-          <div className="py-2" />
-
-          {/* Rows 2-4 use grid for column alignment */}
-          <div className="grid grid-cols-3 gap-x-1.5 sm:gap-x-3 justify-items-center items-end">
-            {/* Row 2: Round labels + red boxes */}
-            <div className="flex flex-col items-center">
-              <span className="font-mono text-[9px] sm:text-[10px] text-[#9CA3AF] mb-1">round 1</span>
-              <OpBoxRed label="Op 1" />
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="font-mono text-[9px] sm:text-[10px] text-[#9CA3AF] mb-1">round 2</span>
-              <OpBoxRed label="Op 2" />
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="font-mono text-[9px] sm:text-[10px] text-[#9CA3AF] mb-1">round 3</span>
-              <OpBoxRed label="Op 3" />
-            </div>
-
-            {/* Down arrows */}
-            <div className="flex items-center py-2">
-              <div className="flex flex-col items-center">
-                <div className="h-3 sm:h-4 border-l-[1.5px] border-red-500/50" />
-                <div className="w-0 h-0 border-t-[5px] border-t-red-500/40 border-x-[4px] border-x-transparent" />
-              </div>
-              <span className="font-mono text-[10px] sm:text-[11px] text-red-400/80 ml-0.5">fix</span>
-            </div>
-            <div className="flex items-center py-2">
-              <div className="flex flex-col items-center">
-                <div className="h-3 sm:h-4 border-l-[1.5px] border-red-500/50" />
-                <div className="w-0 h-0 border-t-[5px] border-t-red-500/40 border-x-[4px] border-x-transparent" />
-              </div>
-              <span className="font-mono text-[10px] sm:text-[11px] text-red-400/80 ml-0.5">fix</span>
-            </div>
-            <div className="flex items-center py-2">
-              <div className="flex flex-col items-center">
-                <div className="h-3 sm:h-4 border-l-[1.5px] border-red-500/50" />
-                <div className="w-0 h-0 border-t-[5px] border-t-red-500/40 border-x-[4px] border-x-transparent" />
-              </div>
-              <span className="font-mono text-[10px] sm:text-[11px] text-red-400/80 ml-0.5">fix</span>
-            </div>
-
-            {/* Row 3: Fixed boxes */}
-            <FixedBox label="Op 1" />
-            <FixedBox label="Op 2" />
-            <FixedBox label="Op 3" />
-          </div>
-
-          {/* Mobile U-loop: SVG for rounded corners + glass label so text doesn’t mix with dashes */}
-          <div className="md:hidden absolute right-0 top-[10px] bottom-[18px] w-10 pointer-events-none">
-            <svg
-              className="absolute inset-0 h-full w-full text-red-400/85"
-              viewBox="0 0 40 128"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="xMaxYMid meet"
-              aria-hidden
-            >
-              <path
-                d="M 6 16 H 26 Q 32 16 32 22 V 106 Q 32 112 26 112 H 8"
-                stroke="currentColor"
-                strokeWidth="1.75"
-                strokeDasharray="5 4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                opacity="0.9"
-              />
-              <path
-                d="M 2 16 L 7 12.5 L 7 19.5 Z"
-                fill="currentColor"
-                opacity="0.85"
-              />
-            </svg>
-            <span className="absolute top-1/2 left-0 z-10 -translate-y-1/2 whitespace-nowrap rounded-md border border-red-400/30 bg-[rgba(15,23,42,0.65)] px-1.5 py-0.5 font-mono text-[8px] text-red-300 shadow-sm backdrop-blur-md">
-              ↻ repeats
-            </span>
-          </div>
+          <RepeatsLoopRail variant="mobile" />
       </div>
 
-      {/* Right: U-shaped arrow with "repeats" label */}
-      <div className="relative shrink-0 self-stretch w-[48px] sm:w-14 overflow-visible hidden md:block">
-        {/* Arrowhead at Row 1 */}
-        <div className="absolute left-0 right-0 top-[14px] flex items-center">
-          <div className="w-0 h-0 border-r-[5px] border-r-red-400/60 border-y-[3px] border-y-transparent" />
-          <div className="flex-1 h-0 border-t-[1.5px] border-dashed border-red-400/50" />
-        </div>
-        {/* Vertical line */}
-        <div
-          className="absolute right-0 top-[14px] bottom-[14px]"
-          style={{ width: 0, borderRight: "1.5px dashed rgba(248,113,113,0.5)" }}
-        />
-        {/* Bottom connector at Row 3 */}
-        <div className="absolute left-0 right-0 bottom-[14px]">
-          <div className="h-0 border-t-[1.5px] border-dashed border-red-400/50" />
-        </div>
-        <span className="absolute top-1/2 left-0.5 sm:left-1 -translate-y-1/2 font-mono text-[8px] sm:text-[9px] text-red-400/60 whitespace-nowrap">
-          ↻ repeats
-        </span>
-      </div>
+      {/* Right: U-loop ends at red Op 3 (round row), not top neutral row */}
+      <RepeatsLoopRail variant="desktop" />
     </div>
 
     {/* Sub-caption */}
