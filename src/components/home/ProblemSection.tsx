@@ -73,17 +73,33 @@ const AmberChip = () => (
  * Dashed U-loop on the right: leaves fixed Op 3 (bottom), runs up the rail, returns into red Op 3 (middle).
  * Rounded joins + glass “repeats” pill (matches reference layout).
  */
-/** Same rail shape; start Y tuned per breakpoint so the bottom leg meets Op3✓. */
-const repeatsLoopPathD =
-  (startY: number) => `M 6 ${startY} H 34 V 80 Q 34 67 24 67 H 10`;
+/** Bottom leg Y: larger = line sits lower (nearer bottom of Op3✓) in the scaled SVG. */
+const repeatsLoopPathD = (startY: number) =>
+  `M 6 ${startY} H 34 V 80 Q 34 67 24 67 H 10`;
 
-const RepeatsLoopRail = ({ variant }: { variant: "mobile" | "desktop" }) => (
+const REPEAT_LOOP_OVERLAY_PHONE_Y = 155;
+/** md–lg: slightly lower start than phone so the hook aligns with the ✓ row on tablet. */
+const REPEAT_LOOP_OVERLAY_TABLET_Y = 184;
+
+const repeatsLoopStrokeProps = {
+  stroke: "currentColor" as const,
+  strokeWidth: 1.75,
+  strokeDasharray: "5 4",
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+  opacity: 0.92,
+};
+
+const RepeatsLoopLabel = () => (
+  <span className="absolute top-[70%] left-0 z-10 -translate-y-1/2 whitespace-nowrap rounded-full border border-red-400/35 bg-[rgba(15,23,42,0.58)] px-1.5 py-0.5 sm:px-2 font-mono text-[8px] sm:text-[9px] text-red-200/95 shadow-sm backdrop-blur-md">
+    ↻ repeats
+  </span>
+);
+
+/** Overlay rail: phone + tablet (< lg). Same box as mobile so SVG scales like mobile (aside column stretches differently and breaks alignment). */
+const RepeatsLoopRailOverlay = () => (
   <div
-    className={
-      variant === "mobile"
-        ? "pointer-events-none md:hidden absolute right-0 top-[10px] bottom-[18px] w-10"
-        : "pointer-events-none relative hidden md:block shrink-0 self-stretch w-12 sm:w-16 overflow-visible"
-    }
+    className="pointer-events-none lg:hidden absolute right-0 top-[10px] bottom-[18px] w-10 sm:w-11"
     aria-hidden
   >
     <svg
@@ -93,20 +109,32 @@ const RepeatsLoopRail = ({ variant }: { variant: "mobile" | "desktop" }) => (
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMaxYMid meet"
     >
+      <path className="md:hidden" d={repeatsLoopPathD(REPEAT_LOOP_OVERLAY_PHONE_Y)} {...repeatsLoopStrokeProps} />
       <path
-        d={repeatsLoopPathD(variant === "mobile" ? 155 : 130)}
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeDasharray="5 4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        opacity="0.92"
+        className="hidden md:block"
+        d={repeatsLoopPathD(REPEAT_LOOP_OVERLAY_TABLET_Y)}
+        {...repeatsLoopStrokeProps}
       />
-      <path d="M 2 67 L 10 62 L 10 72 Z" fill="currentColor" opacity="0.88" />
+      <path d="M 2 67 L 10 62 L 10 72 Z" fill="currentColor" opacity={0.88} />
     </svg>
-    <span className="absolute top-[70%] left-0 z-10 -translate-y-1/2 whitespace-nowrap rounded-full border border-red-400/35 bg-[rgba(15,23,42,0.58)] px-1.5 py-0.5 sm:px-2 font-mono text-[8px] sm:text-[9px] text-red-200/95 shadow-sm backdrop-blur-md">
-      ↻ repeats
-    </span>
+    <RepeatsLoopLabel />
+  </div>
+);
+
+/** Side column rail (lg+ only). Desktop path; not used on tablet so layout matches tuned overlay. */
+const RepeatsLoopRailAside = () => (
+  <div className="pointer-events-none relative hidden lg:block shrink-0 self-stretch w-12 sm:w-16 overflow-visible" aria-hidden>
+    <svg
+      className="absolute inset-0 h-full w-full overflow-visible text-red-400/85"
+      viewBox="0 0 44 128"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMaxYMid meet"
+    >
+      <path d={repeatsLoopPathD(130)} {...repeatsLoopStrokeProps} />
+      <path d="M 2 67 L 10 62 L 10 72 Z" fill="currentColor" opacity={0.88} />
+    </svg>
+    <RepeatsLoopLabel />
   </div>
 );
 
@@ -116,7 +144,7 @@ const LeftPanel = () => (
     {/* Rows + U-shaped arrow on the right */}
     <div className="flex items-stretch w-full max-w-full justify-center gap-0.5 sm:gap-2 overflow-visible">
       {/* Left: the 3 rows */}
-      <div className="flex flex-col items-center min-w-0 relative pr-10 md:pr-0">
+      <div className="flex flex-col items-center min-w-0 relative pr-10 sm:pr-11 lg:pr-0">
           {/* Same width for top row + grid so each column stacks Op → round → fix → done */}
           <div className="inline-flex flex-col items-stretch mx-auto w-max max-w-full">
             {/* Row 1: Op —→ Op —→ Op (5 columns so lower rows align under each Op) */}
@@ -172,11 +200,10 @@ const LeftPanel = () => (
             </div>
           </div>
 
-          <RepeatsLoopRail variant="mobile" />
+          <RepeatsLoopRailOverlay />
       </div>
 
-      {/* Right: U-loop ends at red Op 3 (round row), not top neutral row */}
-      <RepeatsLoopRail variant="desktop" />
+      <RepeatsLoopRailAside />
     </div>
 
     {/* Sub-caption */}
