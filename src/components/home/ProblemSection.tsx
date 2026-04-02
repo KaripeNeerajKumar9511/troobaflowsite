@@ -3,13 +3,13 @@ import ScrollReveal from "@/components/ScrollReveal";
 
 /* ── Shared ── */
 const OpBoxNeutral = ({ label }: { label: string }) => (
-  <div className="px-1.5 py-1.5 sm:px-5 sm:py-2.5 rounded-md bg-[rgba(30,58,95,0.2)] border border-[rgba(255,255,255,0.12)] text-center min-w-[38px] sm:min-w-[72px]">
+  <div className="px-1.5 py-1.5 sm:px-5 sm:py-2.5 rounded-md bg-[rgba(30,58,95,0.2)] border border-[rgba(255,255,255,0.12)] text-center min-w-[38px] lg:min-w-[72px]">
     <span className="font-display text-[11px] sm:text-sm font-medium text-[#E8EDF2]">{label}</span>
   </div>
 );
 
 const OpBoxRed = ({ label }: { label: string }) => (
-  <div className="px-1.5 py-1.5 sm:px-5 sm:py-2.5 rounded-md bg-red-950/30 border-2 border-red-500/70 text-center min-w-[38px] sm:min-w-[72px]">
+  <div className="px-1.5 py-1.5 sm:px-5 sm:py-2.5 rounded-md bg-red-950/30 border-2 border-red-500/70 text-center min-w-[38px] lg:min-w-[72px]">
     <span className="font-display text-[11px] sm:text-sm font-semibold text-red-400">{label}</span>
   </div>
 );
@@ -21,7 +21,7 @@ const OpBoxAmber = ({ label }: { label: string }) => (
 );
 
 const FixedBox = ({ label }: { label: string }) => (
-  <div className="px-1.5 py-1.5 sm:px-5 sm:py-2.5 rounded-md bg-[rgba(30,58,95,0.15)] border border-[rgba(255,255,255,0.1)] text-center min-w-[38px] sm:min-w-[72px]">
+  <div className="px-1.5 py-1.5 sm:px-5 sm:py-2.5 rounded-md bg-[rgba(30,58,95,0.15)] border border-[rgba(255,255,255,0.1)] text-center min-w-[38px] lg:min-w-[72px]">
     <span className="font-display text-[11px] sm:text-sm text-muted-foreground">{label} </span>
     <span className="text-[12px] text-green-500/70">✓</span>
   </div>
@@ -81,8 +81,6 @@ const repeatsLoopPathD = (startY: number) =>
 const REPEAT_LOOP_OVERLAY_PHONE_Y = 155;
 /** md–lg: slightly lower start than phone so the hook aligns with the ✓ row on tablet. */
 const REPEAT_LOOP_OVERLAY_TABLET_Y = 155;
-/** Landscape rotation version: use a stable Y so the loop doesn't jump on rotate. */
-const REPEAT_LOOP_OVERLAY_ROTATION_Y = 184;
 
 function useMediaQuery(query: string) {
   const getMatches = React.useCallback(
@@ -127,16 +125,9 @@ const RepeatsLoopLabel = () => (
 
 /** Overlay rail: phone + tablet (< lg). Same box as mobile so SVG scales like mobile (aside column stretches differently and breaks alignment). */
 const RepeatsLoopRailOverlay = () => {
-  const isLandscape = useMediaQuery("(orientation: landscape)");
   const isMdUp = useMediaQuery("(min-width: 768px)");
 
-  // Portrait: keep tuned phone/tablet values.
-  // Landscape: force the rotation/stable geometry to prevent jumping when the layout crosses `md`.
-  const overlayStartY = isLandscape
-    ? REPEAT_LOOP_OVERLAY_ROTATION_Y
-    : isMdUp
-      ? REPEAT_LOOP_OVERLAY_TABLET_Y
-      : REPEAT_LOOP_OVERLAY_PHONE_Y;
+  const overlayStartY = isMdUp ? REPEAT_LOOP_OVERLAY_TABLET_Y : REPEAT_LOOP_OVERLAY_PHONE_Y;
 
   return (
     <div
@@ -177,13 +168,13 @@ const RepeatsLoopRailAside = () => (
 
 /* ── Left panel ── */
 const LeftPanel = () => (
-  <div className="flex flex-col items-center py-6 sm:py-8 px-2 sm:px-6">
+  <div className="flex flex-col items-center py-6 lg:py-8 px-2 lg:px-6">
     {/* Rows + U-shaped arrow on the right */}
     <div className="flex items-stretch w-full max-w-full justify-center gap-0.5 sm:gap-2 overflow-visible">
       {/* Left: the 3 rows */}
-      <div className="flex flex-col items-center min-w-0 relative pr-10 sm:pr-11 lg:pr-0">
+      <div className="flex flex-col items-center min-w-0 relative pr-10 lg:pr-0">
           {/* Same width for top row + grid so each column stacks Op → round → fix → done */}
-          <div className="inline-flex flex-col items-stretch mx-auto w-max max-w-full">
+          <div className="inline-flex flex-col items-stretch mx-auto w-max max-w-full overflow-hidden">
             {/* Row 1: Op —→ Op —→ Op (5 columns so lower rows align under each Op) */}
             <div className={diagramTopGridClass}>
               <OpBoxNeutral label="Op 1" />
@@ -259,7 +250,7 @@ const LeftPanel = () => (
 
 /* ── Right panel ── */
 const RightPanel = () => (
-  <div className="flex flex-col items-center gap-4 sm:gap-5 py-6 sm:py-8 px-3 sm:px-6">
+  <div className="flex flex-col items-center gap-4 lg:gap-5 py-6 lg:py-8 px-3 lg:px-6">
     {/* Op flow */}
     <div className="flex items-end justify-center">
       <div className="flex items-center self-end mb-[1px]">
@@ -331,8 +322,8 @@ const ProblemSection = () => (
       </ScrollReveal>
 
       <ScrollReveal>
-        <div className="grid sm:grid-cols-2 gap-0 rounded-lg overflow-visible sm:overflow-hidden border border-[rgba(255,255,255,0.08)]">
-          <div className="border-b sm:border-b-0 sm:border-r border-dashed border-[rgba(255,255,255,0.08)]">
+        <div className="grid lg:grid-cols-2 gap-0 rounded-lg overflow-visible lg:overflow-hidden border border-[rgba(255,255,255,0.08)]">
+          <div className="border-b lg:border-b-0 lg:border-r border-dashed border-[rgba(255,255,255,0.08)]">
             <h3 className="font-mono tracking-[0.12em] uppercase text-center pt-5 sm:pt-6 px-3" style={{ fontSize: "13px", fontWeight: 500, color: "rgb(255,255,255)" }}>
               how most teams think
             </h3>

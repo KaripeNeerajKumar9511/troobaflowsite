@@ -55,7 +55,7 @@ const HeroDiagram = () => {
 
 const Hero = () => (
   <section className="flex items-start lg:items-center pt-24 pb-16 px-6 lg:min-h-screen overflow-x-hidden">
-    <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+    <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center">
       {/* Left */}
       <div>
         <span className="section-label inline-block mb-6">Factory Flow Intelligence</span>
@@ -81,8 +81,8 @@ const Hero = () => (
       </div>
 
       {/* Right - Diagram */}
-      <div className="flex justify-center mt-8 lg:mt-0 overflow-hidden">
-        <div className="w-full max-w-[360px] mx-auto lg:max-w-none">
+      <div className="flex justify-center mt-8 md:mt-0 overflow-hidden">
+        <div className="w-full max-w-[360px] mx-auto md:max-w-[420px] lg:max-w-none">
           <HeroDiagram />
         </div>
       </div>
