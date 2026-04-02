@@ -33,7 +33,7 @@ const HowItWorksPage = () => (
         <ScrollReveal>
           <div className="mb-12">
             <h2 className="font-display font-bold text-xl text-white mb-4">The core math</h2>
-            <p className="text-trooba-offwhite/70 leading-relaxed">
+            <p className="text-font-mono/70 leading-relaxed">
               Kingman's equation: as a work cell approaches full utilisation, queue time grows exponentially — not linearly. At 80% utilisation, lead time is 4× baseline. At 90%, it's 9×. Trooba Flow makes this curve visible for every operation in your factory.
             </p>
           </div>
@@ -42,7 +42,7 @@ const HowItWorksPage = () => (
         <ScrollReveal>
           <div className="mb-12">
             <h2 className="font-display font-bold text-xl text-white mb-4">What you input</h2>
-            <ul className="space-y-2 text-trooba-offwhite/70">
+            <ul className="space-y-2 text-font-mono/70">
               <li>· Products and SKUs — demand, lot sizes</li>
               <li>· Routings — operations in sequence</li>
               <li>· Equipment groups — quantities, reliability</li>
@@ -55,7 +55,7 @@ const HowItWorksPage = () => (
         <ScrollReveal>
           <div className="mb-12">
             <h2 className="font-display font-bold text-xl text-white mb-4">What you get</h2>
-            <ul className="space-y-2 text-trooba-offwhite/70">
+            <ul className="space-y-2 text-font-mono/70">
               <li>· Bottleneck map — ranked by queue pressure</li>
               <li>· Lead time waterfall — where time is spent per product</li>
               <li>· What-If comparisons — before vs after any change</li>
@@ -81,11 +81,11 @@ const HowItWorksPage = () => (
             <h2 className="font-display font-bold text-xl text-white mb-6">Frequently Asked Questions</h2>
             <Accordion type="single" collapsible className="space-y-2">
               {faqs.map((f, i) => (
-                <AccordionItem key={i} value={`faq-${i}`} className="border border-trooba-offwhite/[0.08] rounded-lg px-6">
+                <AccordionItem key={i} value={`faq-${i}`} className="border border-font-mono/[0.08] rounded-lg px-6">
                   <AccordionTrigger className="text-white font-display font-medium text-left hover:no-underline">
                     {f.q}
                   </AccordionTrigger>
-                  <AccordionContent className="text-trooba-offwhite/60 leading-relaxed">
+                  <AccordionContent className="text-font-mono/60 leading-relaxed">
                     {f.a}
                   </AccordionContent>
                 </AccordionItem>

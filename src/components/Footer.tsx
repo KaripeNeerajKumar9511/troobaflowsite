@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import markSrc from "@/assets/trooba-mark-dark.svg";
 
 const Footer = () => (
-<footer className="border-t border-trooba-offwhite/[0.08] py-5 px-6">
+<footer className="border-t border-font-mono/[0.08] py-5 px-6">
     <div className="max-w-7xl mx-auto flex flex-col items-center gap-3">
       <div className="flex items-center gap-3">
         <img src={markSrc} alt="Trooba" className="h-7" />
@@ -17,7 +17,7 @@ const Footer = () => (
         <Link to="/about" className="hover:text-trooba-teal transition-colors">About</Link>
         <Link to="/request-access" className="hover:text-trooba-teal transition-colors">Request a Flow Analysis</Link>
       </div>
-      <p className="font-mono text-[12px] tracking-wider uppercase" style={{ color: "rgb(148,163,180)" }}>
+      <p className="font-mono text-[12px] tracking-wider uppercase" style={{ color: "rgb(255,255,255)" }}>
         © 2026 Trooba Technologies
       </p>
     </div>

@@ -48,18 +48,18 @@ const KingmanCurve = () => {
               <rect x="390" y="20" width="60" height="260" fill="#ef4444" opacity="0.06" />
 
               {/* Axes */}
-              <line x1="50" y1="280" x2="450" y2="280" stroke="rgb(148,163,180)" strokeWidth="1" />
-              <line x1="50" y1="280" x2="50" y2="20" stroke="rgb(148,163,180)" strokeWidth="1" />
+              <line x1="50" y1="280" x2="450" y2="280" stroke="rgb(255,255,255)" strokeWidth="1" />
+              <line x1="50" y1="280" x2="50" y2="20" stroke="rgb(255,255,255)" strokeWidth="1" />
 
               {/* X labels */}
-              <text x="250" y="310" textAnchor="middle" fill="rgb(148,163,180)" fontSize="11" fontFamily="DM Mono">UTILISATION %</text>
+              <text x="250" y="310" textAnchor="middle" fill="rgb(255,255,255)" fontSize="11" fontFamily="DM Mono">UTILISATION %</text>
               {[0, 20, 40, 60, 80, 100].map((v) => (
-                <text key={v} x={50 + v * 4} y="296" textAnchor="middle" fill="rgb(148,163,180)" fontSize="11" fontFamily="DM Mono">{v}%</text>
+                <text key={v} x={50 + v * 4} y="296" textAnchor="middle" fill="rgb(255,255,255)" fontSize="11" fontFamily="DM Mono">{v}%</text>
               ))}
 
               {/* Y labels */}
-              <text x="20" y="280" textAnchor="middle" fill="rgb(148,163,180)" fontSize="11" fontFamily="DM Mono">1×</text>
-              <text x="20" y="150" textAnchor="middle" fill="rgb(148,163,180)" fontSize="11" fontFamily="DM Mono">10×</text>
+              <text x="20" y="280" textAnchor="middle" fill="rgb(255,255,255)" fontSize="11" fontFamily="DM Mono">1×</text>
+              <text x="20" y="150" textAnchor="middle" fill="rgb(255,255,255)" fontSize="11" fontFamily="DM Mono">10×</text>
 
               {/* Zone labels */}
               <text x="180" y="270" textAnchor="middle" fill="#00C4B4" fontSize="11" fontFamily="DM Mono" opacity="0.6">MANAGEABLE</text>

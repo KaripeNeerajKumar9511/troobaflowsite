@@ -43,7 +43,7 @@ const HowItWorksSection = () => (
     <div className="max-w-7xl mx-auto">
       <ScrollReveal>
         <div
-          className="border border-trooba-offwhite/[0.08] rounded-lg p-5 sm:p-6 lg:p-8"
+          className="border border-font-mono/[0.08] rounded-lg p-5 sm:p-6 lg:p-8"
           style={{ backgroundColor: "rgba(30,58,95,0.2)" }}
         >
           <span className="section-label block">How It Works</span>

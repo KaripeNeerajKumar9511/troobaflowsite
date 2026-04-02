@@ -16,7 +16,7 @@ const AboutPage = () => (
         </ScrollReveal>
 
         <ScrollReveal>
-          <div className="space-y-6 text-trooba-offwhite/70 leading-relaxed mb-16">
+          <div className="space-y-6 text-font-mono /70 leading-relaxed mb-16">
             <p>
               The founder applied QRM in their own manufacturing company — not as a consultant, as an operator. Lead times dropped from 4 weeks to under 7 days.
             </p>
@@ -30,9 +30,9 @@ const AboutPage = () => (
         </ScrollReveal>
 
         <ScrollReveal>
-          <div className="border border-trooba-offwhite/[0.08] rounded-lg p-6 lg:p-8 mb-16">
+          <div className="border border-font-mono /[0.08] rounded-lg p-6 lg:p-8 mb-16">
             <h2 className="font-mono text-[10px] tracking-[0.18em] uppercase text-trooba-teal mb-4">Academic Foundation</h2>
-            <ul className="space-y-2 text-trooba-offwhite/50 text-sm">
+            <ul className="space-y-2 text-font-mono /50 text-sm">
               <li>· Kingman's equation</li>
               <li>· Allen-Cunneen approximation</li>
               <li>· QRM methodology (Rajan Suri, UW-Madison)</li>

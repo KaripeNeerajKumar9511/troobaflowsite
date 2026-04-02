@@ -17,7 +17,7 @@ const ProofPage = () => (
 
         {/* Tarinika */}
         <ScrollReveal>
-          <div className="border border-trooba-offwhite/[0.08] rounded-lg p-8 lg:p-12 mb-8" style={{ backgroundColor: "rgba(30,58,95,0.2)" }}>
+          <div className="border border-font-mono/[0.08] rounded-lg p-8 lg:p-12 mb-8" style={{ backgroundColor: "rgba(30,58,95,0.2)" }}>
             <div className="flex items-start justify-between mb-6">
               <div>
                 <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-trooba-mid block mb-1">Jewelry Manufacturing</span>
@@ -45,17 +45,17 @@ const ProofPage = () => (
               </div>
             </div>
 
-            <p className="text-trooba-offwhite/60 mb-3">
+            <p className="text-font-mono/60 mb-3">
               True constraint was lot sizing and queue dynamics — not machine speed. The team had been optimizing individual machine throughput for years, missing the systemic bottleneck entirely.
             </p>
-            <p className="text-trooba-offwhite/40 italic mb-4">"We were solving for the wrong thing."</p>
+            <p className="text-font-mono/40 italic mb-4">"We were solving for the wrong thing."</p>
             <p className="font-mono text-[10px] tracking-wider uppercase text-trooba-mid">Tarinika is the founder's manufacturing company.</p>
           </div>
         </ScrollReveal>
 
         {/* Superpacks */}
         <ScrollReveal>
-          <div className="border border-trooba-offwhite/[0.08] rounded-lg p-8 lg:p-12 mb-16" style={{ backgroundColor: "rgba(30,58,95,0.2)" }}>
+          <div className="border border-font-mono/[0.08] rounded-lg p-8 lg:p-12 mb-16" style={{ backgroundColor: "rgba(30,58,95,0.2)" }}>
             <div className="flex items-start justify-between mb-6">
               <div>
                 <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-trooba-mid block mb-1">Corrugated Carton Mfg · ~300 SKUs</span>
@@ -70,7 +70,7 @@ const ProofPage = () => (
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h4 className="font-mono text-[10px] tracking-[0.18em] uppercase text-trooba-mid mb-3">What we're doing</h4>
-                <ul className="space-y-2 text-trooba-offwhite/50 text-sm">
+                <ul className="space-y-2 text-font-mono/50 text-sm">
                   <li>· Full factory model being built — routings, equipment, demand patterns</li>
                   <li>· Shop-floor data collection under way across all major operations</li>
                   <li>· Bottleneck analysis and recommendations: in progress</li>
@@ -79,9 +79,9 @@ const ProofPage = () => (
               <div>
                 <h4 className="font-mono text-[10px] tracking-[0.18em] uppercase text-trooba-mid mb-3">Live Findings</h4>
                 <ul className="space-y-2.5 text-sm">
-                  <li className="flex items-center gap-2 text-trooba-offwhite/60"><span className="text-trooba-teal">✓</span> Routing data captured for all major product families</li>
-                  <li className="flex items-center gap-2 text-trooba-offwhite/60"><span className="text-trooba-teal">✓</span> Equipment utilisation baseline established</li>
-                  <li className="flex items-center gap-2 text-trooba-offwhite/60"><span className="w-2 h-2 rounded-full bg-trooba-teal animate-pulse-teal-dot inline-block"></span> Full bottleneck map: in progress</li>
+                  <li className="flex items-center gap-2 text-font-mono/60"><span className="text-trooba-teal">✓</span> Routing data captured for all major product families</li>
+                  <li className="flex items-center gap-2 text-font-mono/60"><span className="text-trooba-teal">✓</span> Equipment utilisation baseline established</li>
+                  <li className="flex items-center gap-2 text-font-mono/60"><span className="w-2 h-2 rounded-full bg-trooba-teal animate-pulse-teal-dot inline-block"></span> Full bottleneck map: in progress</li>
                 </ul>
               </div>
             </div>
@@ -98,9 +98,9 @@ const ProofPage = () => (
               { title: "Confidence tiers", desc: "Every finding is tagged with a confidence level based on data quality and validation depth." },
               { title: "What we don't promise", desc: "We don't guarantee specific outcomes. We provide the model and the math — you make the decisions." },
             ].map((m) => (
-              <div key={m.title} className="border border-trooba-offwhite/[0.08] rounded-lg p-6">
+              <div key={m.title} className="border border-font-mono/[0.08] rounded-lg p-6">
                 <h3 className="font-display font-bold text-white text-base mb-2">{m.title}</h3>
-                <p className="text-trooba-offwhite/50 text-sm">{m.desc}</p>
+                <p className="text-font-mono/50 text-sm">{m.desc}</p>
               </div>
             ))}
           </div>
@@ -113,7 +113,7 @@ const ProofPage = () => (
             {["High-SKU discrete manufacturing", "Corrugated & packaging", "Jewelry & accessories", "Complex routing environments"].map((ind) => (
               <div key={ind} className="inline-flex items-center gap-2 border border-trooba-teal/20 rounded-full px-4 py-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-trooba-teal flex-shrink-0" />
-                <span className="text-trooba-offwhite/80 text-sm">{ind}</span>
+                <span className="text-font-mono/80 text-sm">{ind}</span>
               </div>
             ))}
           </div>

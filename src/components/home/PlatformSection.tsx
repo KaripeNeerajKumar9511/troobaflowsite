@@ -54,7 +54,7 @@ const BottleneckHeatmap = () => (
           <tr>
             <th className="pb-2 sm:pb-3 pr-1 sm:pr-3 w-[44px] sm:w-[92px]" />
             {operations.map((op) => (
-              <th key={op} className="pb-2 sm:pb-3 text-center font-mono text-[8px] sm:text-[11px] tracking-[0.12em] sm:tracking-[0.14em] uppercase" style={{ color: "rgb(148,163,180)" }}>
+              <th key={op} className="pb-2 sm:pb-3 text-center font-mono text-[8px] sm:text-[11px] tracking-[0.12em] sm:tracking-[0.14em] uppercase" style={{ color: "rgb(255,255,255)" }}>
                 {op}
               </th>
             ))}
@@ -106,7 +106,7 @@ const BottleneckHeatmap = () => (
       ))}
     </div>
 
-    <p className="font-mono text-[11px] tracking-[0.08em] mt-3" style={{ color: "rgba(232,237,242,0.65)" }}>
+    <p className="font-mono text-[11px] tracking-[0.08em] mt-3 text-white/70">
       Instantly identify constraints across products and operations.
     </p>
     <p className="md:hidden font-mono text-[9px] tracking-wide text-center mt-2" style={{ color: "rgba(232,237,242,0.4)" }}>
@@ -254,7 +254,7 @@ const PlatformSection = () => (
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {cards.map((c) => (
           <ScrollReveal key={c.num}>
-            <div className="border border-trooba-offwhite/[0.08] border-l-4 border-l-trooba-teal/70 rounded-md p-5 sm:p-6 md:p-6 lg:p-8 h-full transition-all duration-200 ease-out hover:-translate-y-[3px] hover:border-l-trooba-teal" style={{ backgroundColor: "rgba(30,58,95,0.2)" }}>
+            <div className="border border-font-mono/[0.08] border-l-4 border-l-trooba-teal/70 rounded-md p-5 sm:p-6 md:p-6 lg:p-8 h-full transition-all duration-200 ease-out hover:-translate-y-[3px] hover:border-l-trooba-teal" style={{ backgroundColor: "rgba(30,58,95,0.2)" }}>
               <span className="font-mono text-[11px] tracking-[0.2em] text-trooba-teal">{c.num}</span>
               <h3 className="font-display font-bold text-white text-base mt-2 mb-2">{c.title}</h3>
               <p className="text-[14px] sm:text-[15px]" style={{ color: "rgba(232,237,242,0.85)" }}>{c.desc}</p>

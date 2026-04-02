@@ -47,11 +47,11 @@ const WhoSection = () => (
               {stats.map((s) => (
                 <div key={s.label} className="rounded-lg p-3 sm:p-4 lg:p-6 text-center flex flex-col justify-center" style={{ backgroundColor: "#141C26", border: "1px solid rgba(255,255,255,0.08)" }}>
                   <div className="font-display font-bold text-foreground text-[24px] sm:text-[28px] lg:text-[36px] mb-1">{s.value}</div>
-                  <span className="font-mono uppercase" style={{ fontSize: "10px", letterSpacing: "0.14em", color: "rgb(148,163,180)", fontWeight: 500 }}>{s.label}</span>
+                  <span className="font-mono uppercase" style={{ fontSize: "10px", letterSpacing: "0.14em", color: "rgb(255,255,255)", fontWeight: 500 }}>{s.label}</span>
                 </div>
               ))}
             </div>
-            <p className="text-center mt-4" style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgb(148,163,180)" }}>
+            <p className="text-center mt-4" style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgb(255,255,255)" }}>
               Based on Real Factory Results and Proven System Modeling Principles.
             </p>
           </div>

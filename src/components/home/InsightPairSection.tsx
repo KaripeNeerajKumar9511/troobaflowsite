@@ -11,7 +11,7 @@ const drivers = [
 
 const HiddenDriversCard = () => (
   <div
-    className="border border-trooba-offwhite/[0.08] rounded-lg p-5 sm:p-6 lg:p-8 h-full flex flex-col" style={{ backgroundColor: "rgba(30,58,95,0.2)" }}
+    className="border border-font-mono/[0.08] rounded-lg p-5 sm:p-6 lg:p-8 h-full flex flex-col" style={{ backgroundColor: "rgba(30,58,95,0.2)" }}
   >
     <span className="section-label block">The Hidden Drivers</span>
     <h2 className="font-display font-bold text-lg sm:text-xl lg:text-2xl text-foreground mb-4 leading-tight">
@@ -64,7 +64,7 @@ const KingmanCard = () => {
 
   return (
     <div
-      className="border border-trooba-offwhite/[0.08] rounded-lg p-5 sm:p-6 lg:p-8 h-full flex flex-col" style={{ backgroundColor: "rgba(30,58,95,0.2)" }}
+      className="border border-font-mono/[0.08] rounded-lg p-5 sm:p-6 lg:p-8 h-full flex flex-col" style={{ backgroundColor: "rgba(30,58,95,0.2)" }}
     >
       <span className="section-label block">Why Lead Times Are Long</span>
       <h2 className="font-display font-bold text-lg sm:text-xl lg:text-2xl text-foreground mb-4 leading-tight">
@@ -76,14 +76,14 @@ const KingmanCard = () => {
           <rect x="50" y="20" width="280" height="260" fill="#00C4B4" opacity="0.04" />
           <rect x="330" y="20" width="60" height="260" fill="#F59E0B" opacity="0.06" />
           <rect x="390" y="20" width="60" height="260" fill="#ef4444" opacity="0.06" />
-          <line x1="50" y1="280" x2="450" y2="280" stroke="rgb(148,163,180)" strokeWidth="1" />
-          <line x1="50" y1="280" x2="50" y2="20" stroke="rgb(148,163,180)" strokeWidth="1" />
-          <text x="250" y="310" textAnchor="middle" fill="rgb(148,163,180)" fontSize="11" fontFamily="DM Mono">UTILISATION %</text>
+          <line x1="50" y1="280" x2="450" y2="280" stroke="rgb(255,255,255)" strokeWidth="1" />
+          <line x1="50" y1="280" x2="50" y2="20" stroke="rgb(255,255,255)" strokeWidth="1" />
+          <text x="250" y="310" textAnchor="middle" fill="rgb(255,255,255)" fontSize="11" fontFamily="DM Mono">UTILISATION %</text>
           {[0, 20, 40, 60, 80, 100].map((v) => (
-            <text key={v} x={50 + v * 4} y="296" textAnchor="middle" fill="rgb(148,163,180)" fontSize="11" fontFamily="DM Mono">{v}%</text>
+            <text key={v} x={50 + v * 4} y="296" textAnchor="middle" fill="rgb(255,255,255)" fontSize="11" fontFamily="DM Mono">{v}%</text>
           ))}
-          <text x="20" y="280" textAnchor="middle" fill="rgb(148,163,180)" fontSize="11" fontFamily="DM Mono">1×</text>
-          <text x="20" y="150" textAnchor="middle" fill="rgb(148,163,180)" fontSize="11" fontFamily="DM Mono">10×</text>
+          <text x="20" y="280" textAnchor="middle" fill="rgb(255,255,255)" fontSize="11" fontFamily="DM Mono">1×</text>
+          <text x="20" y="150" textAnchor="middle" fill="rgb(255,255,255)" fontSize="11" fontFamily="DM Mono">10×</text>
           <text x="180" y="270" textAnchor="middle" fill="#00C4B4" fontSize="11" fontFamily="DM Mono" opacity="0.6">MANAGEABLE</text>
           <text x="420" y="270" textAnchor="middle" fill="#ef4444" fontSize="11" fontFamily="DM Mono" opacity="0.6">DANGER</text>
           <polyline points={curvePoints} stroke="#00C4B4" strokeWidth="2.5" fill="none" />

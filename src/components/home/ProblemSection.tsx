@@ -333,13 +333,13 @@ const ProblemSection = () => (
       <ScrollReveal>
         <div className="grid sm:grid-cols-2 gap-0 rounded-lg overflow-visible sm:overflow-hidden border border-[rgba(255,255,255,0.08)]">
           <div className="border-b sm:border-b-0 sm:border-r border-dashed border-[rgba(255,255,255,0.08)]">
-            <h3 className="font-mono tracking-[0.12em] uppercase text-center pt-5 sm:pt-6 px-3" style={{ fontSize: "13px", fontWeight: 500, color: "rgb(160,175,192)" }}>
+            <h3 className="font-mono tracking-[0.12em] uppercase text-center pt-5 sm:pt-6 px-3" style={{ fontSize: "13px", fontWeight: 500, color: "rgb(255,255,255)" }}>
               how most teams think
             </h3>
             <LeftPanel />
           </div>
           <div>
-            <h3 className="font-mono tracking-[0.12em] uppercase text-center pt-5 sm:pt-6 px-3" style={{ fontSize: "13px", fontWeight: 500, color: "rgb(160,175,192)" }}>
+            <h3 className="font-mono tracking-[0.12em] uppercase text-center pt-5 sm:pt-6 px-3" style={{ fontSize: "13px", fontWeight: 500, color: "rgb(255,255,255)" }}>
               how trooba flow sees it
             </h3>
             <RightPanel />
@@ -348,7 +348,7 @@ const ProblemSection = () => (
       </ScrollReveal>
 
       <ScrollReveal>
-        <p className="text-center text-sm mt-10" style={{ color: "rgba(232,237,242,0.55)" }}>
+        <p className="text-center text-sm mt-10 text-white/70">
           Without seeing this clearly, every improvement is guesswork.
         </p>
       </ScrollReveal>

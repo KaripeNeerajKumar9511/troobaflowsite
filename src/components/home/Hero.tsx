@@ -10,7 +10,7 @@ const HeroDiagram = () => {
     }, 700);
     return () => clearInterval(interval);
   }, []);
-
+  
   return (
     <svg viewBox="0 0 480 260" className="w-full max-w-lg" fill="none" xmlns="http://www.w3.org/2000/svg">
       {/* Cell 1 - Cutting */}
@@ -44,11 +44,11 @@ const HeroDiagram = () => {
 
       {/* Legend - single row */}
       <line x1="63" y1="220" x2="93" y2="220" stroke="#00C4B4" strokeWidth="2" strokeDasharray="8 6" />
-      <text x="98" y="224" fill="rgb(148,163,180)" fontSize="11" fontFamily="DM Mono">Normal flow</text>
+      <text x="98" y="224" fill="rgb(255,255,255)" fontSize="11" fontFamily="DM Mono">Normal flow</text>
       <line x1="196" y1="220" x2="226" y2="220" stroke="#94A3B4" strokeWidth="2" strokeDasharray="3 9" opacity="0.7" />
-      <text x="231" y="224" fill="rgb(148,163,180)" fontSize="11" fontFamily="DM Mono">Starved flow</text>
+      <text x="231" y="224" fill="rgb(255,255,255)" fontSize="11" fontFamily="DM Mono">Starved flow</text>
       <rect x="335" y="215" width="10" height="10" rx="2" fill="rgba(245,158,11,0.3)" stroke="#F59E0B" strokeWidth="1" />
-      <text x="350" y="224" fill="rgb(148,163,180)" fontSize="11" fontFamily="DM Mono">Bottleneck</text>
+      <text x="350" y="224" fill="rgb(255,255,255)" fontSize="11" fontFamily="DM Mono">Bottleneck</text>
     </svg>
   );
 };
@@ -73,7 +73,7 @@ const Hero = () => (
             → Request a Flow Analysis
           </Link>
         </div>
-        <div className="flex flex-col md:flex-row md:gap-0 gap-1" style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.15em", color: "rgb(148,163,180)", textTransform: "uppercase" }}>
+        <div className="flex flex-col md:flex-row md:gap-0 gap-1 text-white/70" style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.15em", color: "rgb(148,163,white/70)", textTransform: "uppercase" }}>
           <span className="md:after:content-['_·_'] md:after:mx-0">Proven in Real Factories</span>
           <span className="md:after:content-['_·_'] md:after:mx-0">No Complex Simulation</span>
           <span>Results in Days</span>

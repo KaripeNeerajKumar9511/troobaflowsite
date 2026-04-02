@@ -104,7 +104,7 @@ const Navbar = () => {
               <Link
                 key={l.href}
                 to={l.href}
-                className="text-sm font-medium text-trooba-offwhite/90 hover:text-trooba-teal transition-colors"
+                className="text-sm font-medium text-font-mono/90 hover:text-trooba-teal transition-colors"
               >
                 {l.label}
               </Link>
@@ -119,7 +119,7 @@ const Navbar = () => {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden text-trooba-offwhite"
+            className="md:hidden text-font-mono"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >

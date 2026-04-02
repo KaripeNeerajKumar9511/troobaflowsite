@@ -4,7 +4,7 @@ const DifferentiationSection = () => (
   <section className="section-padding px-6" style={{ background: "rgba(0,196,180,0.04)" }}>
     <div className="max-w-7xl mx-auto">
       <ScrollReveal>
-        <div className="border border-trooba-offwhite/[0.08] rounded-lg p-8 lg:p-16" style={{ background: "rgba(14,18,24,0.7)" }}>
+        <div className="border border-font-mono/[0.08] rounded-lg p-8 lg:p-16" style={{ background: "rgba(14,18,24,0.7)" }}>
           <span className="section-label block">What Makes Trooba Different</span>
           <h2 className="font-display font-bold text-3xl lg:text-[40px] text-white mb-4 leading-tight">
             Not a dashboard. Not a planning tool.
