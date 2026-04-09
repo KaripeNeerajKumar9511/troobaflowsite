@@ -23,6 +23,7 @@ const FinalCTA = () => (
             → Request a Flow Analysis
           </Link>
         </div>
+        <p className="text-font-mono/60 text-center mb-6">Already have an account? <a href="https://app.trooba.com" className="text-trooba-teal hover:underline">Login</a>.</p>
         <div className="flex flex-col md:flex-row md:justify-center md:gap-0 gap-1 mt-6" style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgb(255,255,255)" }}>
           <span className="md:after:content-['_·_']">Flow Analysis Session</span>
           <span className="md:after:content-['_·_']">Your Actual Data</span>

@@ -215,6 +215,8 @@ const RequestAccessPage = () => {
               >
                 {submitting ? "Submitting..." : "Request Access "}
               </button>
+              <p className="text-font-mono/60 text-center">Already have an account? <a href="https://app.trooba.com" className="text-trooba-teal hover:underline">Login</a>.</p>
+
             </form>
           </ScrollReveal>
         </div>

@@ -113,7 +113,7 @@ const Navbar = () => {
               to="/request-access"
               className="text-sm font-medium px-5 py-2.5 rounded-md bg-trooba-teal text-trooba-navy hover:bg-trooba-teal-hover transition-colors"
             >
-              Request a Flow Analysis →
+              Request or login →
             </Link>
           </div>
 
