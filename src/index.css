@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Trooba brand tokens */
+    --color-teal: #00C4B4;
+    --color-teal-hover: #00AFA1;
+    --color-navy: #0C0F14;
+    --color-slate: #1E3A5F;
+    --color-off-white: #E8EDF2;
+    --color-mid: #4A5868;
+    --color-amber: #F59E0B;
+    --color-border-dark: rgba(255,255,255,0.08);
+
+    --font-display: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+
+    /* Shadcn mappings */
+    --background: 220 20% 5%;
+    --foreground: 214 25% 92%;
+    --card: 212 52% 24%;
+    --card-foreground: 214 25% 92%;
+    --popover: 220 20% 5%;
+    --popover-foreground: 214 25% 92%;
+    --primary: 174 100% 38%;
+    --primary-foreground: 220 20% 5%;
+    --secondary: 212 52% 24%;
+    --secondary-foreground: 214 25% 92%;
+    --muted: 212 52% 24%;
+    --muted-foreground: 213 14% 35%;
+    --accent: 174 100% 38%;
+    --accent-foreground: 220 20% 5%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 0 0% 100% / 0.08;
+    --input: 0 0% 100% / 0.12;
+    --ring: 174 100% 38%;
+    --radius: 0.375rem;
+
+    --sidebar-background: 220 20% 5%;
+    --sidebar-foreground: 214 25% 92%;
+    --sidebar-primary: 174 100% 38%;
+    --sidebar-primary-foreground: 220 20% 5%;
+    --sidebar-accent: 212 52% 24%;
+    --sidebar-accent-foreground: 214 25% 92%;
+    --sidebar-border: 0 0% 100% / 0.08;
+    --sidebar-ring: 174 100% 38%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    font-family: var(--font-display);
+    background-color: var(--color-navy);
+    color: var(--color-off-white);
+    overflow-x: hidden;
+  }
+}
+
+/* ── Utility classes ── */
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+  margin-bottom: 16px;
+}
+
+.trust-strip {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-mid);
+}
+
+/* ── Animations ── */
+@keyframes pulse-amber {
+  0%, 100% { border-color: rgba(245, 158, 11, 0.6); box-shadow: 0 0 12px rgba(245, 158, 11, 0.15); }
+  50% { border-color: rgba(245, 158, 11, 1); box-shadow: 0 0 24px rgba(245, 158, 11, 0.3); }
+}
+
+@keyframes pulse-teal-dot {
+  0%, 100% { opacity: 0.5; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes flow-fast {
+  to { stroke-dashoffset: -28; }
+}
+
+@keyframes flow-slow {
+  to { stroke-dashoffset: -24; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-pulse-amber {
+  animation: pulse-amber 1.8s ease-in-out infinite;
+}
+
+.animate-pulse-teal-dot {
+  animation: pulse-teal-dot 2s ease-in-out infinite;
+}
+
+.flow-fast {
+  stroke-dasharray: 8 6;
+  animation: flow-fast 1.2s linear infinite;
+}
+
+.flow-slow {
+  stroke-dasharray: 3 9;
+  animation: flow-slow 2.8s linear infinite;
+  opacity: 0.45;
+}
+
+/* Section spacing */
+.section-padding {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+@media (min-width: 640px) {
+  .section-padding {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+}
+
+/* Tablet headline cap */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .font-display {
+    max-font-size: 36px;
+  }
+}
